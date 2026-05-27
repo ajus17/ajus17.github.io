@@ -1,313 +1,122 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Narrativa Emocional Digital | Fotografía</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Versiones del Proyecto</title>
 
-    <style>
-        /* Paleta de Colores y Variables */
-        :root {
-            --bg-dark: #0a192f;
-            --bg-card: #112240;
-            --accent-yellow: #ffd700;
-            --text-light: #ccd6f6;
-            --text-muted: #8892b0;
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #08121f, #132b45);
+      color: #ffffff;
+      min-height: 100vh;
+    }
 
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
+    .contenedor {
+      max-width: 1100px;
+      margin: auto;
+      padding: 80px 20px;
+      text-align: center;
+    }
 
-        h1, h2, h3, h4, .nav-link {
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-        }
+    h1 {
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #f5b942;
+    }
 
-        .text-accent {
-            color: var(--accent-yellow) !important;
-        }
+    .subtitulo {
+      color: #c9d6e2;
+      margin-bottom: 50px;
+      font-size: 18px;
+    }
 
-        /* Navbar */
-        .navbar {
-            background-color: var(--bg-dark);
-            padding: 20px 0;
-            transition: 0.3s;
-            border-bottom: 1px solid rgba(255,215,0,0.1);
-        }
+    .versiones {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
 
-        .navbar-brand {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-yellow) !important;
-        }
+    .card {
+      background: rgba(16, 35, 58, 0.95);
+      border: 1px solid rgba(245, 185, 66, 0.3);
+      border-radius: 20px;
+      padding: 35px;
+      text-align: left;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      transition: 0.3s ease;
+    }
 
-        .nav-link {
-            color: var(--accent-yellow) !important;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-left: 20px;
-        }
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: #f5b942;
+    }
 
-        .nav-link:hover {
-            color: #fff !important;
-        }
+    .numero {
+      font-size: 14px;
+      color: #7dd3fc;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
 
-        /* Hero Section - Estilo Collage Tipográfico */
-        .hero-section {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding-top: 80px;
-        }
+    .card h2 {
+      color: #ffffff;
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
 
-        .hero-title-container {
-            position: absolute;
-            z-index: 10;
-            text-align: center;
-            width: 100%;
-            pointer-events: none;
-        }
+    .card p {
+      color: #c9d6e2;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
 
-        .hero-title {
-            font-size: 9vw;
-            font-weight: 700;
-            line-height: 0.85;
-            margin: 0;
-            color: var(--accent-yellow);
-            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      background: #f5b942;
+      color: #08121f;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: 0.3s ease;
+    }
 
-        .text-outline {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--accent-yellow);
-        }
+    .btn:hover {
+      background: #ffffff;
+    }
 
-        /* Imágenes del Hero tipo Collage */
-        .hero-images {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            width: 80%;
-            max-width: 1000px;
-            z-index: 5;
-        }
+    .btn-secundario {
+      background: transparent;
+      color: #ffffff;
+      border: 1px solid #7dd3fc;
+    }
 
-        .hero-img {
-            object-fit: cover;
-            border-radius: 4px;
-            filter: grayscale(100%) contrast(1.2);
-            transition: 0.5s;
-        }
-
-        .hero-img:hover {
-            filter: grayscale(0%);
-        }
-
-        .img-left {
-            width: 300px;
-            height: 400px;
-            transform: translateY(-40px);
-        }
-
-        .img-center {
-            width: 400px;
-            height: 550px;
-            z-index: 6;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
-        }
-
-        .img-right {
-            width: 250px;
-            height: 350px;
-            transform: translateY(60px);
-        }
-
-        /* Sección "Acerca de" / El Proyecto */
-        .about-section {
-            padding: 120px 0;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--text-light);
-            margin-bottom: 30px;
-        }
-
-        .stats-container {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-        }
-
-        .stat-item h3 {
-            font-size: 2.5rem;
-            color: var(--accent-yellow);
-            margin-bottom: 5px;
-        }
-
-        .stat-item p {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            color: var(--accent-yellow);
-            text-transform: uppercase;
-        }
-
-        /* Grilla de Proyectos / Aplicaciones */
-        .projects-section {
-            padding: 80px 0;
-        }
-    </style>
+    .btn-secundario:hover {
+      background: #7dd3fc;
+      color: #08121f;
+    }
+  </style>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+<body>
+  <main class="contenedor">
+    <h1>Versiones del Proyecto</h1>
 
-    <nav class="navbar navbar-expand-lg fixed-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="#">Continente<span class="text-light">Digital</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon" style="filter: invert(1) sepia(1) saturate(5) hue-rotate(175deg);"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="#inicio">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#proyecto">El Proyecto</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#aplicaciones">Aplicaciones</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#equipo">Equipo</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <section class="versiones">
+      <article class="card">
+        <div class="numero">Versión 01</div>
+        <a href="landing-v1.html" class="btn">Abrir versión</a>
+      </article>
 
-    <section id="inicio" class="hero-section">
-        <div class="hero-title-container">
-            <h1 class="hero-title">NARRATIVA</h1>
-            <h1 class="hero-title text-outline">EMOCIONAL</h1>
-            <h1 class="hero-title">DIGITAL</h1>
-        </div>
-
-        <div class="hero-images">
-            <img src="images/old-camera.png" alt="Cámara Antigua" class="hero-img img-left">
-            <img src="images/digital-camera.png" alt="Cámara Digital" class="hero-img img-center">
-            <img src="images/fotografias.png" alt="Fotografías" class="hero-img img-right">
-        </div>
+      <article class="card">
+        <div class="numero">Versión 02</div>
+        <a href="landing-v2.html" class="btn btn-secundario">Abrir versión</a>
+      </article>
     </section>
-
-    <section id="proyecto" class="about-section container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 pe-lg-5">
-                <h2 class="section-title">LOS INICIOS DE <br>LA FOTOGRAFÍA</h2>
-                
-                <figure class="mb-4">
-                    <blockquote class="blockquote border-start border-3 ps-3" style="border-color: var(--accent-yellow) !important;">
-                        <p class="text-muted text-uppercase mb-0" style="font-size: 0.85rem; letter-spacing: 1px;">
-                            "La evolución de la fotografía y su transformación en narrativa emocional digital."
-                        </p>
-                    </blockquote>
-                </figure>
-
-                <p style="line-height: 1.8;">
-                    Cámaras fotográficas que usaban placas de diversos elementos sobre la que se imprimía la foto por el efecto de "Cámara Oscura" y la reacción del elemento utilizado, con la luz.
-                </p>
-                <p style="line-height: 1.8;">
-                    Las primeras fotografías mostraban personas con semblante estoico, y en ocasiones ceremoniales, la fotografía era una ocasión particular. Las cámaras análogas comerciales permitieron capturar momentos más informales y otro tipo de expresiones faciales que reflejaban mayor rango de emociones.
-                </p>
-
-            </div>
-            <div class="col-lg-6 mt-5 mt-lg-0 text-center">
-                <img src="images/equipo.png" alt="Evolución fotográfica" class="img-fluid rounded shadow-lg" style="filter: grayscale(80%); transition: 0.5s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(80%)'">
-            </div>
-        </div>
-    </section>
-
-    <section id="aplicaciones" class="projects-section bg-dark" style="background-color: #06101e !important;">
-        <div class="container">
-            <h2 class="section-title mb-5 text-center">APLICACIONES DESTACADAS</h2>
-
-            <div class="row align-items-center mb-5 pb-5 border-bottom" style="border-color: rgba(255,215,0,0.1) !important;">
-                <div class="col-md-5 mb-4 mb-md-0">
-                    <figure class="mb-0">
-                        <picture>
-                            <source media="(min-width: 992px)" srcset="images/fotoperiodismo.png">
-                            
-                            <source media="(min-width: 768px)" srcset="images/fotoperiodismo.png">
-                            
-                            <img src="images/fotoperiodismo.png" alt="V-J Day in Times Square" class="img-fluid rounded shadow w-100" style="filter: grayscale(80%); transition: 0.5s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(80%)'">
-                        </picture>
-                        
-                        <figcaption class="figure-caption mt-3" style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; border-left: 2px solid var(--accent-yellow); padding-left: 10px;">
-                            La icónica foto de la revista Life del marinero que besa a una enfermera en Times Square durante la celebración del fin de la Segunda Guerra Mundial. <br>
-                            <span style="color: var(--accent-yellow);">Credit:</span> Alfred Eisenstaedt/Time & Life Pictures
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col-md-7 ps-md-5">
-                    <h3 class="text-accent mb-3">Fotografía Periodística</h3>
-                    <p style="line-height: 1.8; color: var(--text-light);">
-                        Las imágenes se capturan de manera oportuna y absolutamente fortuita, recayendo el peso emocional en las circunstancias y la composición de cada cuadro. Algunas fotografías pueden ser tan impactantes que podrían rayar en los límites de la sensibilidad moral del espectador.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row align-items-center mb-5 pb-5 border-bottom flex-md-row-reverse" style="border-color: rgba(255,215,0,0.1) !important;">
-                <div class="col-md-5 mb-4 mb-md-0">
-                    <img src="images/artistica.png" alt="Fotografía Artística" class="img-fluid rounded shadow w-100" style="filter: grayscale(80%); transition: 0.5s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(80%)'">
-                </div>
-                <div class="col-md-7 pe-md-5 text-md-end">
-                    <h3 class="text-accent mb-3">Fotografía Artística</h3>
-                    <p style="line-height: 1.8; color: var(--text-light);">
-                        Las composiciones se logran mediante una escenografía y temáticas y técnicas creativas en ambientes controlados que, en conjunto con la edición digital, permiten una gran gama de resultados.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row align-items-center mb-5 pb-5 border-bottom" style="border-color: rgba(255,215,0,0.1) !important;">
-                <div class="col-md-5 mb-4 mb-md-0">
-                    <img src="images/publicitaria.jpg" alt="Fotografía Publicitaria" class="img-fluid rounded shadow w-100" style="filter: grayscale(80%); transition: 0.5s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(80%)'">
-                </div>
-                <div class="col-md-7 ps-md-5">
-                    <h3 class="text-accent mb-3">Fotografía Publicitaria</h3>
-                    <p style="line-height: 1.8; color: var(--text-light);">
-                        Similar a la foto artística, se logra en ambientes controlados, pero con la finalidad de apelar no tanto a emociones, sino a impulsos. Estas reacciones se logran gracias al conjunto de la composición y factores psicológicos de elementos dentro de ésta.
-                    </p>
-                </div>
-            </div>
-
-            <div class="row align-items-center flex-md-row-reverse">
-                <div class="col-md-5 mb-4 mb-md-0">
-                    <img src="images/fortnite.jpg" alt="Fotografía en Videojuegos" class="img-fluid rounded shadow w-100" style="filter: grayscale(80%); transition: 0.5s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(80%)'">
-                </div>
-                <div class="col-md-7 pe-md-5 text-md-end">
-                    <h3 class="text-accent mb-3">Fotografía en Videojuegos</h3>
-                    <p style="line-height: 1.8; color: var(--text-light);">
-                        Valiéndose totalmente de la tecnología para su creación, se pueden crear atmósferas que emulen el mundo real y generen sentimientos de estrés como podría se en el caso de un juego de horror y supervivencia, u otras fantásticas que usen elementos más coloridos para atraer públicos más jóvenes y generar experiencias de juego más divertidas.
-                    </p>
-                </div>
-            </div>
-            
-        </div>
-    </section>
-
-    <footer id="equipo" class="py-5 text-center" style="border-top: 1px solid rgba(255,215,0,0.2);">
-        <div class="container">
-            <h4 class="text-accent mb-4">Integrantes del Proyecto</h4>
-            <p class="text-muted mb-0">
-                Luis Fernando Corzo Fonseca • Grecia Sofia Garcia Rojas • Verónica Andrea Oporta Dumas <br>
-                Ángel Gustavo Rovira Morelos • Adolfo Jose Urbina Sánchez
-            </p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </main>
 </body>
-
 </html>

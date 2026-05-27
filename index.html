@@ -1,122 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Versiones del Proyecto</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Versiones del Proyecto</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #08121f, #132b45);
-      color: #ffffff;
-      min-height: 100vh;
-    }
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #08121f, #132b45);
+        color: #ffffff;
+        min-height: 100vh;
+      }
 
-    .contenedor {
-      max-width: 1100px;
-      margin: auto;
-      padding: 80px 20px;
-      text-align: center;
-    }
+      .contenedor {
+        max-width: 1100px;
+        margin: auto;
+        padding: 80px 20px;
+        text-align: center;
+      }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 15px;
-      color: #f5b942;
-    }
+      h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: #f5b942;
+      }
 
-    .subtitulo {
-      color: #c9d6e2;
-      margin-bottom: 50px;
-      font-size: 18px;
-    }
+      .subtitulo {
+        color: #c9d6e2;
+        margin-bottom: 50px;
+        font-size: 18px;
+      }
 
-    .versiones {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
+      .versiones {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+      }
 
-    .card {
-      background: rgba(16, 35, 58, 0.95);
-      border: 1px solid rgba(245, 185, 66, 0.3);
-      border-radius: 20px;
-      padding: 35px;
-      text-align: left;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-      transition: 0.3s ease;
-    }
+      .card {
+        background: rgba(16, 35, 58, 0.95);
+        border: 1px solid rgba(245, 185, 66, 0.3);
+        border-radius: 20px;
+        padding: 35px;
+        text-align: left;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        transition: 0.3s ease;
+      }
 
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: #f5b942;
-    }
+      .card:hover {
+        transform: translateY(-8px);
+        border-color: #f5b942;
+      }
 
-    .numero {
-      font-size: 14px;
-      color: #7dd3fc;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 15px;
-    }
+      .numero {
+        font-size: 14px;
+        color: #7dd3fc;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 15px;
+      }
 
-    .card h2 {
-      color: #ffffff;
-      font-size: 28px;
-      margin-bottom: 15px;
-    }
+      .card h2 {
+        color: #ffffff;
+        font-size: 28px;
+        margin-bottom: 15px;
+      }
 
-    .card p {
-      color: #c9d6e2;
-      line-height: 1.6;
-      margin-bottom: 25px;
-    }
+      .card p {
+        color: #c9d6e2;
+        line-height: 1.6;
+        margin-bottom: 25px;
+      }
 
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      background: #f5b942;
-      color: #08121f;
-      padding: 12px 22px;
-      border-radius: 30px;
-      font-weight: bold;
-      transition: 0.3s ease;
-    }
+      .btn {
+        display: inline-block;
+        text-decoration: none;
+        background: #f5b942;
+        color: #08121f;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-weight: bold;
+        transition: 0.3s ease;
+      }
 
-    .btn:hover {
-      background: #ffffff;
-    }
+      .btn:hover {
+        background: #ffffff;
+      }
 
-    .btn-secundario {
-      background: transparent;
-      color: #ffffff;
-      border: 1px solid #7dd3fc;
-    }
+      .btn-secundario {
+        background: transparent;
+        color: #ffffff;
+        border: 1px solid #7dd3fc;
+      }
 
-    .btn-secundario:hover {
-      background: #7dd3fc;
-      color: #08121f;
-    }
-  </style>
-</head>
+      .btn-secundario:hover {
+        background: #7dd3fc;
+        color: #08121f;
+      }
+    </style>
+  </head>
 
-<body>
-  <main class="contenedor">
-    <h1>Versiones del Proyecto</h1>
+  <body>
+    <main class="contenedor">
+      <h1>Versiones del Proyecto</h1>
 
-    <section class="versiones">
-      <article class="card">
-        <div class="numero">Versión 01</div>
-        <a href="landing-v1.html" class="btn">Abrir versión</a>
-      </article>
+      <section class="versiones">
+        <article class="card">
+          <div class="numero">Versión 01</div>
+          <a href="landing-v1.html" class="btn">Abrir versión</a>
+        </article>
 
-      <article class="card">
-        <div class="numero">Versión 02</div>
-        <a href="landing-v2.html" class="btn btn-secundario">Abrir versión</a>
-      </article>
-    </section>
-  </main>
-</body>
+        <article class="card">
+          <div class="numero">Versión 02</div>
+          <a href="landing-v2.html" class="btn btn-secundario">Abrir versión</a>
+        </article>
+
+        <article class="card">
+          <div class="numero">Versión 03</div>
+          <a href="landing-v3.html" class="btn">Abrir versión</a>
+        </article>
+      </section>
+    </main>
+  </body>
 </html>

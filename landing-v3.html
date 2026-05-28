@@ -1,487 +1,973 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>De la Plata al Píxel: La Evolución de la Fotografía</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
     <style>
-        /* Estilos Base y Lienzo de Fondo Global */
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            color: #1a1a1a;
-            background: url('https://images.unsplash.com/photo-1495707902641-75cac588d2e9?q=80&w=1600') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
+      /* Estilos Base y Lienzo de Fondo Global */
+      body {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        color: #1a1a1a;
+        background: url("https://images.unsplash.com/photo-1495707902641-75cac588d2e9?q=80&w=1600")
+          no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
 
-        p {
-            text-align: justify;
-            line-height: 1.7;
-            font-size: 1.05rem;
-        }
+      p {
+        text-align: justify;
+        line-height: 1.7;
+        font-size: 1.05rem;
+      }
 
-        /* TRANSICIONES ULTRA SUAVES DE DESPLAZAMIENTO (Fade-in & Scale) */
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px) scale(0.99);
-            transition: opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                        transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
-            will-change: opacity, transform;
-        }
+      /* TRANSICIONES ULTRA SUAVES DE DESPLAZAMIENTO (Fade-in & Scale) */
+      .reveal {
+        opacity: 0;
+        transform: translateY(25px) scale(0.99);
+        transition:
+          opacity 1.6s cubic-bezier(0.16, 1, 0.3, 1),
+          transform 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
 
-        /* PALETA EVOLUTIVA UNIFORME MEDIANTE VELADURAS TRASLÚCIDAS (Glassmorphism) */
-        .section-analoga {
-            background-color: rgba(244, 240, 234, 0.88);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #3e3529;
-            border-bottom: 1px solid rgba(220, 209, 196, 0.4);
-        }
-        
-        .accent-ocre {
-            color: #8c6239;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
+      /* PALETA EVOLUTIVA UNIFORME MEDIANTE VELADURAS TRASLÚCIDAS (Glassmorphism) */
+      .section-analoga {
+        background-color: rgba(244, 240, 234, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #3e3529;
+        border-bottom: 1px solid rgba(220, 209, 196, 0.4);
+      }
 
-        .section-digital {
-            background-color: rgba(255, 255, 255, 0.90);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            color: #222222;
-            border-bottom: 1px solid rgba(234, 234, 234, 0.4);
-        }
+      .accent-ocre {
+        color: #8c6239;
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
 
-        .section-vivida {
-            background-color: rgba(10, 25, 47, 0.93);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            color: #f1f5f9;
-        }
-        
-        .accent-vivid-gold {
-            color: #f1c40f;
-            font-weight: 700;
-        }
-        
-        .accent-vivid-cyan {
-            color: #00f2fe;
-            font-weight: 700;
-        }
+      .section-digital {
+        background-color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        color: #222222;
+        border-bottom: 1px solid rgba(234, 234, 234, 0.4);
+      }
 
-        /* Componentes de Interfaz Estilizados */
-        .badge-custom {
-            padding: 6px 16px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            border-radius: 50px;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
+      .section-vivida {
+        background-color: rgba(10, 25, 47, 0.93);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        color: #f1f5f9;
+      }
 
-        .badge-ocre {
-            background-color: #8c6239;
-            color: #ffffff;
-        }
+      .accent-vivid-gold {
+        color: #f1c40f;
+        font-weight: 700;
+      }
 
-        .badge-vivid {
-            background-color: #f1c40f;
-            color: #0a192f;
-        }
+      .accent-vivid-cyan {
+        color: #00f2fe;
+        font-weight: 700;
+      }
 
-        .badge-ai {
-            background-color: #00f2fe;
-            color: #0a192f;
-        }
+      /* Componentes de Interfaz Estilizados */
+      .badge-custom {
+        padding: 6px 16px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-radius: 50px;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+      }
 
-        .video-container-placeholder {
-            background-color: rgba(7, 17, 32, 0.5);
-            border: 2px dashed rgba(241, 196, 15, 0.3);
-            border-radius: 12px;
-            min-height: 380px;
-            transition: border-color 0.4s ease;
-        }
-        
-        .video-container-placeholder:hover {
-            border-color: rgba(241, 196, 15, 0.7);
-        }
+      .badge-ocre {
+        background-color: #8c6239;
+        color: #ffffff;
+      }
 
-        .img-frame {
-            padding: 10px;
-            background-color: #ffffff;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+      .badge-vivid {
+        background-color: #f1c40f;
+        color: #0a192f;
+      }
 
-        .img-frame:hover {
-            transform: scale(1.015);
-        }
+      .badge-ai {
+        background-color: #00f2fe;
+        color: #0a192f;
+      }
 
-        /* ESTILOS DEL CARRUSEL CON TEXTO SOBRE FOTO */
-        .carousel-item-bg {
-            background-size: cover;
-            background-position: center;
-            min-height: 400px;
-            display: flex;
-            align-items: flex-end;
-            position: relative;
-        }
+      .video-container-placeholder {
+        background-color: rgba(7, 17, 32, 0.5);
+        border: 2px dashed rgba(241, 196, 15, 0.3);
+        border-radius: 12px;
+        min-height: 380px;
+        transition: border-color 0.4s ease;
+      }
 
-        /* Máscara de oscurecimiento gradual para garantizar contraste del texto */
-        .carousel-item-bg::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(7, 17, 32, 0.95) 20%, rgba(7, 17, 32, 0.7) 60%, rgba(0,0,0,0.2) 100%);
-            z-index: 1;
-        }
+      .video-container-placeholder:hover {
+        border-color: rgba(241, 196, 15, 0.7);
+      }
 
-        .carousel-caption-custom {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            padding: 40px;
-        }
+      .img-frame {
+        padding: 10px;
+        background-color: #ffffff;
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .img-frame:hover {
+        transform: scale(1.015);
+      }
+
+      /* ESTILOS DEL CARRUSEL CON TEXTO SOBRE FOTO */
+      .carousel-item-bg {
+        background-size: cover;
+        background-position: center;
+        min-height: 400px;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+      }
+
+      /* Máscara de oscurecimiento gradual para garantizar contraste del texto */
+      .carousel-item-bg::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(7, 17, 32, 0.95) 20%,
+          rgba(7, 17, 32, 0.7) 60%,
+          rgba(0, 0, 0, 0.2) 100%
+        );
+        z-index: 1;
+      }
+
+      .carousel-caption-custom {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 40px;
+      }
     </style>
-</head>
-<body>
-
+  </head>
+  <body>
     <header class="section-analoga py-5 text-center">
-        <div class="container px-4 py-5 reveal active">
-            <span class="badge-custom badge-ocre">Actividad Grupal I — Continente Digital</span>
-            <h1 class="display-3 fw-bold mb-2 text-dark" style="letter-spacing: -1px;">La Evolución de la Fotografía</h1>
-            <h2 class="fs-2 fw-light text-muted mb-4">Y su Transformación en Narrativa Emocional Digital</h2>
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <p class="lead fs-5 text-center text-secondary mb-4">
-                        Un viaje a través del diseño visual y la memoria técnica: desde la fijación química de la luz sobre soportes rígidos, hasta la desmaterialización algorítmica colectiva que redefine la sensibilidad interactiva moderna.
-                    </p>
-                    <a href="#fase-analogica" class="btn btn-outline-dark px-4 py-2 text-uppercase fw-bold small" style="letter-spacing: 1px;">Iniciar Recorrido</a>
-                </div>
-            </div>
+      <div class="container px-4 py-5 reveal active">
+        <span class="badge-custom badge-ocre"
+          >Actividad Grupal I — Continente Digital</span
+        >
+        <h1
+          class="display-3 fw-bold mb-2 text-dark"
+          style="letter-spacing: -1px"
+        >
+          La Evolución de la Fotografía
+        </h1>
+        <h2 class="fs-2 fw-light text-muted mb-4">
+          Y su Transformación en Narrativa Emocional Digital
+        </h2>
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <p class="lead fs-5 text-center text-secondary mb-4">
+              Un viaje a través del diseño visual y la memoria técnica: desde la
+              fijación química de la luz sobre soportes rígidos, hasta la
+              desmaterialización algorítmica colectiva que redefine la
+              sensibilidad interactiva moderna.
+            </p>
+            <a
+              href="#fase-analogica"
+              class="btn btn-outline-dark px-4 py-2 text-uppercase fw-bold small"
+              style="letter-spacing: 1px"
+              >Iniciar Recorrido</a
+            >
+          </div>
         </div>
+      </div>
     </header>
 
     <main>
-        
-        <section id="fase-analogica" class="section-analoga py-5">
-            <div class="container px-4 py-4 reveal">
-                <div class="row align-items-center g-5">
-                    <div class="col-lg-7">
-                        <span class="text-uppercase fw-bold small accent-ocre">Fase Inicial</span>
-                        <h2 class="fw-bold mt-1 mb-3 text-dark">Placas Químicas Capsuladas y Semblante Estoico</h2>
-                        <p>
-                            En sus orígenes, la fotografía estuvo ligada a la física y la química pesada. Los dispositivos primigenios operaban bajo el principio físico de la Cámara Oscura, proyectando la luz exterior sobre placas recubiertas de diversos elementos fotosensibles químicos para imprimir la imagen por la reacción directa del material ante el estímulo lumínico. Debido a los prolongados tiempos de exposición requeridos por estas sustancias, las primeras fotografías documentaban a las personas con un semblante completamente estoico y rígido. La captura visual era un acontecimiento ceremonial, una ocasión particular y planificada donde la espontaneidad era técnicamente imposible.
-                        </p>
-                        <p>
-                            La gran mutación hacia la narrativa visual comenzó con la comercialización masiva de las cámaras análogas comerciales de carrete portátiles. Al agilizar el proceso y reducir el aparataje técnico, los usuarios pudieron capturar por primera vez momentos informales de la cotidianidad. Esto desató la liberación del retrato rígido, reflejando un rango significativamente mayor de expresiones faciales y emociones espontáneas congeladas en el tiempo.
-                        </p>
-                    </div>
-                    <div class="col-lg-5 text-center">
-                        <div class="img-frame rounded">
-                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600" alt="Evolución de la Cámara" class="img-fluid rounded mb-2" style="filter: sepia(0.4) grayscale(0.2);">
-                            <span class="text-muted small d-block pt-1">Soporte e instrumentación física analógica.</span>
-                        </div>
-                    </div>
-                </div>
+      <section id="fase-analogica" class="section-analoga py-5">
+        <div class="container px-4 py-4 reveal">
+          <div class="row align-items-center g-5">
+            <div class="col-lg-7">
+              <span class="text-uppercase fw-bold small accent-ocre"
+                >Fase Inicial</span
+              >
+              <h2 class="fw-bold mt-1 mb-3 text-dark">
+                Placas Químicas Capsuladas y Semblante Estoico
+              </h2>
+              <p>
+                En sus orígenes, la fotografía estuvo ligada a la física y la
+                química pesada. Los dispositivos primigenios operaban bajo el
+                principio físico de la Cámara Oscura, proyectando la luz
+                exterior sobre placas recubiertas de diversos elementos
+                fotosensibles químicos para imprimir la imagen por la reacción
+                directa del material ante el estímulo lumínico. Debido a los
+                prolongados tiempos de exposición requeridos por estas
+                sustancias, las primeras fotografías documentaban a las personas
+                con un semblante completamente estoico y rígido. La captura
+                visual era un acontecimiento ceremonial, una ocasión particular
+                y planificada donde la espontaneidad era técnicamente imposible.
+              </p>
+              <p>
+                La gran mutación hacia la narrativa visual comenzó con la
+                comercialización masiva de las cámaras análogas comerciales de
+                carrete portátiles. Al agilizar el proceso y reducir el
+                aparataje técnico, los usuarios pudieron capturar por primera
+                vez momentos informales de la cotidianidad. Esto desató la
+                liberación del retrato rígido, reflejando un rango
+                significativamente mayor de expresiones faciales y emociones
+                espontáneas congeladas en el tiempo.
+              </p>
             </div>
-        </section>
-
-        <section class="section-digital py-5">
-            <div class="container px-4 py-4 reveal">
-                <div class="row align-items-center g-5 flex-lg-row-reverse">
-                    <div class="col-lg-7">
-                        <span class="text-uppercase fw-bold small text-muted">La Transición Tecnológica</span>
-                        <h2 class="fw-bold mt-1 mb-3 text-dark">El Paso de Átomos Analógicos a Bits Digitales</h2>
-                        <p>
-                            La llegada de la tecnología de captura digital marcó el segundo quiebre histórico, caracterizado por la instantaneidad y la informalidad total. Al sustituir la película química por un sensor electrónico, los usuarios conquistaron una autonomía sin precedentes: ya no dependían de laboratorios o equipos especializados para el complejo proceso físico de revelado e impresión de copias en papel.
-                        </p>
-                        <p>
-                            Esta desmaterialización técnica no solo agilizó de manera inmediata los reportes del fotoperiodismo global, sino que amplió los horizontes narrativos del diseño de manera radical. El píxel permitió la manipulación absoluta de la composición: abrió paso a la producción de composiciones artísticas bajo cánones estéticos híbridos imposibles de emular en un cuarto oscuro tradicional y sentó las bases para experimentar en entornos espaciales e interactivos totalmente nuevos.
-                        </p>
-                    </div>
-                    <div class="col-lg-5 text-center">
-                        <div class="img-frame rounded">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600" alt="Cámara Digital" class="img-fluid rounded mb-2">
-                            <span class="text-muted small d-block pt-1">Autonomía del proceso visual y revelado electrónico.</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-5 text-center">
+              <div class="img-frame rounded">
+                <img
+                  src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=600"
+                  alt="Evolución de la Cámara"
+                  class="img-fluid rounded mb-2"
+                  style="filter: sepia(0.4) grayscale(0.2)"
+                />
+                <span class="text-muted small d-block pt-1"
+                  >Soporte e instrumentación física analógica.</span
+                >
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="section-vivida py-5">
-            <div class="container px-4 py-4 reveal">
-                <div class="row align-items-center g-5 mb-5">
-                    <div class="col-lg-7">
-                        <span class="badge-custom badge-vivid">Entornos Sociales</span>
-                        <h2 class="fw-bold text-white mb-3">Hiperconectividad Visual y Redes Sociales</h2>
-                        <p class="text-light opacity-80">
-                            En el panorama contemporáneo, la fusión de la cámara fotográfica con el teléfono móvil inteligente y plataformas como Facebook e Instagram completó la democratización del medio. Actualmente, cualquier individuo con acceso a un terminal móvil posee la capacidad técnica de capturar y publicar contenido visual en tiempo real desde cualquier coordenada geográfica del planeta de manera inmediata.
-                        </p>
-                        <p class="text-light opacity-80">
-                            Las herramientas integradas de edición, animación y, de manera crucial, la adición de filtros de realidad aumentada (AR), han modificado de raíz la semiótica de la imagen. Los usuarios ya no solo registran su entorno, sino que se expresan mediante códigos interactivos completamente ajenos a la fotografía tradicional, transformando el hecho fotográfico en una conversación digital fluida y comunitaria.
-                        </p>
-                    </div>
-                    <div class="col-lg-5 text-center">
-                        <div class="img-frame rounded bg-dark border-0">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600" alt="Fotografía en Smartphone" class="img-fluid rounded mb-2">
-                            <span class="text-light opacity-50 small d-block pt-1">Filtros de Realidad Aumentada y conectividad móvil.</span>
+      <section class="section-digital py-5">
+        <div class="container px-4 py-4 reveal">
+          <div class="row align-items-center g-5 flex-lg-row-reverse">
+            <div class="col-lg-7">
+              <span class="text-uppercase fw-bold small text-muted"
+                >La Transición Tecnológica</span
+              >
+              <h2 class="fw-bold mt-1 mb-3 text-dark">
+                El Paso de Átomos Analógicos a Bits Digitales
+              </h2>
+              <p>
+                La llegada de la tecnología de captura digital marcó el segundo
+                quiebre histórico, caracterizado por la instantaneidad y la
+                informalidad total. Al sustituir la película química por un
+                sensor electrónico, los usuarios conquistaron una autonomía sin
+                precedentes: ya no dependían de laboratorios o equipos
+                especializados para el complejo proceso físico de revelado e
+                impresión de copias en papel.
+              </p>
+              <p>
+                Esta desmaterialización técnica no solo agilizó de manera
+                inmediata los reportes del fotoperiodismo global, sino que
+                amplió los horizontes narrativos del diseño de manera radical.
+                El píxel permitió la manipulación absoluta de la composición:
+                abrió paso a la producción de composiciones artísticas bajo
+                cánones estéticos híbridos imposibles de emular en un cuarto
+                oscuro tradicional y sentó las bases para experimentar en
+                entornos espaciales e interactivos totalmente nuevos.
+              </p>
+            </div>
+            <div class="col-lg-5 text-center">
+              <div class="img-frame rounded">
+                <img
+                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600"
+                  alt="Cámara Digital"
+                  class="img-fluid rounded mb-2"
+                />
+                <span class="text-muted small d-block pt-1"
+                  >Autonomía del proceso visual y revelado electrónico.</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-vivida py-5">
+        <div class="container px-4 py-4 reveal">
+          <div class="row align-items-center g-5 mb-5">
+            <div class="col-lg-7">
+              <span class="badge-custom badge-vivid">Entornos Sociales</span>
+              <h2 class="fw-bold text-white mb-3">
+                Hiperconectividad Visual y Redes Sociales
+              </h2>
+              <p class="text-light opacity-80">
+                En el panorama contemporáneo, la fusión de la cámara fotográfica
+                con el teléfono móvil inteligente y plataformas como Facebook e
+                Instagram completó la democratización del medio. Actualmente,
+                cualquier individuo con acceso a un terminal móvil posee la
+                capacidad técnica de capturar y publicar contenido visual en
+                tiempo real desde cualquier coordenada geográfica del planeta de
+                manera inmediata.
+              </p>
+              <p class="text-light opacity-80">
+                Las herramientas integradas de edición, animación y, de manera
+                crucial, la adición de filtros de realidad aumentada (AR), han
+                modificado de raíz la semiótica de la imagen. Los usuarios ya no
+                solo registran su entorno, sino que se expresan mediante códigos
+                interactivos completamente ajenos a la fotografía tradicional,
+                transformando el hecho fotográfico en una conversación digital
+                fluida y comunitaria.
+              </p>
+            </div>
+            <div class="col-lg-5 text-center">
+              <div class="img-frame rounded bg-dark border-0">
+                <img
+                  src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=600"
+                  alt="Fotografía en Smartphone"
+                  class="img-fluid rounded mb-2"
+                />
+                <span class="text-light opacity-50 small d-block pt-1"
+                  >Filtros de Realidad Aumentada y conectividad móvil.</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="row align-items-center g-5 mb-5 py-4 reveal">
+            <div class="col-lg-5 text-center order-2 order-lg-1">
+              <div class="img-frame rounded bg-dark border-0">
+                <img
+                  src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600"
+                  alt="Virtual Photography en Videojuegos"
+                  class="img-fluid rounded mb-2"
+                />
+                <span class="text-light opacity-50 small d-block pt-1"
+                  >Espacios tridimensionales y simulación óptica por
+                  software.</span
+                >
+              </div>
+            </div>
+            <div class="col-lg-7 order-1 order-lg-2">
+              <span class="badge-custom badge-vivid">Entornos Virtuales</span>
+              <h2 class="fw-bold text-white mb-3">
+                La Fotografía en Espacios Virtuales y Videojuegos
+              </h2>
+              <p class="text-light opacity-80">
+                Valiéndose en su totalidad de la tecnología por computadora para
+                su creación, el diseño de la narrativa multimedia ha consolidado
+                la fotografía virtual dentro de los videojuegos. Esta disciplina
+                permite moldear y capturar atmósferas tridimensionales dinámicas
+                que emulan a la perfección el mundo físico o plantean realidades
+                alternas.
+              </p>
+              <p class="text-light opacity-80">
+                A través de herramientas como los modos fotográficos internos,
+                el encuadre pasa a ser un elemento de inmersión psicológica
+                pura: los creadores y usuarios pueden actuar estructurando
+                composiciones sombrías para inducir sensaciones de estrés y
+                tensión dentro del género de horror y supervivencia, u
+                orientarse hacia paletas de elementos abstractos, coloridos y
+                sumamente atractivos dirigidos a audiencias jóvenes para
+                propiciar experiencias más divertidas. El lienzo ya no es la
+                realidad tangible, sino la geometría simulada.
+              </p>
+            </div>
+          </div>
+
+          <div class="row align-items-center g-5 mb-5 py-4 reveal">
+            <div class="col-lg-7">
+              <span class="badge-custom badge-ai">Post-Fotografía</span>
+              <h2 class="accent-vivid-cyan mb-3">
+                La Metamorfosis Visual en la Era de la Inteligencia Artificial
+              </h2>
+              <p class="text-light opacity-80">
+                La transición de la imagen entra en una etapa crítica con la
+                irrupción de los modelos generativos y la Inteligencia
+                Artificial. Si bien la transición digital desmaterializó el
+                soporte físico, la IA altera el origen directo del registro:
+                pasamos de capturar la luz reflejada en el mundo real a
+                sintetizar representaciones estadísticas derivadas de datos
+                algorítmicos. La frontera de la composición se expande mediante
+                procesos computacionales avanzados capaces de recrear
+                hiperrealismo puro a partir de descripciones sintéticas de
+                texto.
+              </p>
+              <p class="text-light opacity-80">
+                Este cambio de paradigma resignifica la discusión sobre la
+                confianza y la veracidad de la imagen testimonio. Las
+                alteraciones, modificaciones y recreaciones sintéticas conviven
+                permanentemente en el ecosistema actual de distribución
+                instantánea, obligando al espectador a decodificar la obra ya no
+                como un documento fiel de lo acontecido, sino como un vínculo
+                expresivo y conceptual puro de la población global.
+              </p>
+            </div>
+            <div class="col-lg-5 text-center">
+              <div
+                class="img-frame rounded bg-dark border-0"
+                style="border: 1px solid rgba(0, 242, 254, 0.2) !important"
+              >
+                <img
+                  src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600"
+                  alt="Inteligencia Artificial Visual"
+                  class="img-fluid rounded mb-2"
+                  style="filter: hue-rotate(45deg)"
+                />
+                <span
+                  class="text-muted small d-block pt-1"
+                  style="color: #00f2fe !important"
+                  >Composición sintética generativa y redes neuronales
+                  visuales.</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="py-4 reveal">
+            <h3 class="accent-vivid-gold mb-3 text-center text-lg-start">
+              Taxonomía Narrativa: Aplicación y Géneros de la Fotografía
+            </h3>
+            <p class="text-light opacity-80 mb-4 text-center text-lg-start">
+              Para comprender cómo opera el peso emocional en las diferentes
+              vertientes visuales provistas por la investigación del equipo,
+              desliza a través de los siguientes campos funcionales:
+            </p>
+
+            <div
+              id="carouselTaxonomia"
+              class="carousel slide carousel-fade"
+              data-bs-ride="carousel"
+              data-bs-interval="6000"
+            >
+              <div class="carousel-indicators mb-n2">
+                <button
+                  type="button"
+                  data-bs-target="#carouselTaxonomia"
+                  data-bs-slide-to="0"
+                  class="active"
+                  aria-current="true"
+                  aria-label="Slide 1"
+                  style="
+                    width: 30px;
+                    height: 3px;
+                    background-color: #f1c40f;
+                    border: none;
+                  "
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselTaxonomia"
+                  data-bs-slide-to="1"
+                  aria-label="Slide 2"
+                  style="
+                    width: 30px;
+                    height: 3px;
+                    background-color: #f1c40f;
+                    border: none;
+                  "
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselTaxonomia"
+                  data-bs-slide-to="2"
+                  aria-label="Slide 3"
+                  style="
+                    width: 30px;
+                    height: 3px;
+                    background-color: #f1c40f;
+                    border: none;
+                  "
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#carouselTaxonomia"
+                  data-bs-slide-to="3"
+                  aria-label="Slide 4"
+                  style="
+                    width: 30px;
+                    height: 3px;
+                    background-color: #f1c40f;
+                    border: none;
+                  "
+                ></button>
+              </div>
+
+              <div class="carousel-inner shadow-lg rounded-4 overflow-hidden">
+                <div class="carousel-item active">
+                  <div
+                    class="carousel-item-bg"
+                    style="
+                      background-image: url(&quot;https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&quot;);
+                    "
+                  >
+                    <div class="carousel-caption-custom text-start">
+                      <span
+                        class="badge bg-danger mb-2 px-3 py-1 text-uppercase rounded-pill"
+                        style="font-size: 0.7rem; letter-spacing: 1px"
+                        >Género Activo</span
+                      >
+                      <h4 class="fw-bold text-white mb-2">
+                        Fotografía Periodística
+                      </h4>
+                      <div class="row g-3">
+                        <div class="col-md-7">
+                          <p
+                            class="text-light opacity-90 mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Las imágenes se capturan de manera oportuna y
+                            absolutamente fortuita, recayendo el peso emocional
+                            en las circunstancias y la composición de cada
+                            cuadro.
+                          </p>
                         </div>
+                        <div
+                          class="col-md-5 border-start border-secondary ps-md-4"
+                        >
+                          <h6
+                            class="fw-bold text-danger mb-1"
+                            style="
+                              font-size: 0.8rem;
+                              letter-spacing: 0.5px;
+                              text-transform: uppercase;
+                            "
+                          >
+                            Efecto Emocional
+                          </h6>
+                          <p
+                            class="text-white fw-semibold mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Impacto crudo que puede rayar en los límites de la
+                            sensibilidad moral del espectador (Ej: Obra de Kevin
+                            Carter en 1993).
+                          </p>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
 
-                <div class="row align-items-center g-5 mb-5 py-4 reveal">
-                    <div class="col-lg-5 text-center order-2 order-lg-1">
-                        <div class="img-frame rounded bg-dark border-0">
-                            <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=600" alt="Virtual Photography en Videojuegos" class="img-fluid rounded mb-2">
-                            <span class="text-light opacity-50 small d-block pt-1">Espacios tridimensionales y simulación óptica por software.</span>
+                <div class="carousel-item">
+                  <div
+                    class="carousel-item-bg"
+                    style="
+                      background-image: url(&quot;https://images.unsplash.com/photo-1459908676235-d5f02a50184b?q=80&w=1000&quot;);
+                    "
+                  >
+                    <div class="carousel-caption-custom text-start">
+                      <span
+                        class="badge bg-secondary mb-2 px-3 py-1 text-uppercase rounded-pill"
+                        style="
+                          font-size: 0.7rem;
+                          letter-spacing: 1px;
+                          background-color: #8c6239 !important;
+                        "
+                        >Género Activo</span
+                      >
+                      <h4 class="fw-bold text-white mb-2">
+                        Fotografía Artística
+                      </h4>
+                      <div class="row g-3">
+                        <div class="col-md-7">
+                          <p
+                            class="text-light opacity-90 mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Las composiciones se logran mediante una
+                            escenografía, temáticas y técnicas creativas en
+                            ambientes controlados que, en conjunto con la
+                            edición digital, permiten una gran gama de
+                            resultados.
+                          </p>
                         </div>
+                        <div
+                          class="col-md-5 border-start border-secondary ps-md-4"
+                        >
+                          <h6
+                            class="fw-bold text-muted mb-1"
+                            style="
+                              font-size: 0.8rem;
+                              letter-spacing: 0.5px;
+                              text-transform: uppercase;
+                              color: #f1c40f !important;
+                            "
+                          >
+                            Efecto Emocional
+                          </h6>
+                          <p
+                            class="text-white fw-semibold mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Evocación de una vasta gama de estados reflexivos,
+                            estéticos, profundos y composiciones con cánones
+                            libres.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                    <div class="col-lg-7 order-1 order-lg-2">
-                        <span class="badge-custom badge-vivid">Entornos Virtuales</span>
-                        <h2 class="fw-bold text-white mb-3">La Fotografía en Espacios Virtuales y Videojuegos</h2>
-                        <p class="text-light opacity-80">
-                            Valiéndose en su totalidad de la tecnología por computadora para su creación, el diseño de la narrativa multimedia ha consolidado la fotografía virtual dentro de los videojuegos. Esta disciplina permite moldear y capturar atmósferas tridimensionales dinámicas que emulan a la perfección el mundo físico o plantean realidades alternas.
-                        </p>
-                        <p class="text-light opacity-80">
-                            A través de herramientas como los modos fotográficos internos, el encuadre pasa a ser un elemento de inmersión psicológica pura: los creadores y usuarios pueden actuar estructurando composiciones sombrías para inducir sensaciones de estrés y tensión dentro del género de horror y supervivencia, u orientarse hacia paletas de elementos abstractos, coloridos y sumamente atractivos dirigidos a audiencias jóvenes para propiciar experiencias más divertidas. El lienzo ya no es la realidad tangible, sino la geometría simulada.
-                        </p>
-                    </div>
+                  </div>
                 </div>
 
-                <div class="row align-items-center g-5 mb-5 py-4 reveal">
-                    <div class="col-lg-7">
-                        <span class="badge-custom badge-ai">Post-Fotografía</span>
-                        <h2 class="accent-vivid-cyan mb-3">La Metamorfosis Visual en la Era de la Inteligencia Artificial</h2>
-                        <p class="text-light opacity-80">
-                            La transición de la imagen entra en una etapa crítica con la irrupción de los modelos generativos y la Inteligencia Artificial. Si bien la transición digital desmaterializó el soporte físico, la IA altera el origen directo del registro: pasamos de capturar la luz reflejada en el mundo real a sintetizar representaciones estadísticas derivadas de datos algorítmicos. La frontera de la composición se expande mediante procesos computacionales avanzados capaces de recrear hiperrealismo puro a partir de descripciones sintéticas de texto.
-                        </p>
-                        <p class="text-light opacity-80">
-                            Este cambio de paradigma resignifica la discusión sobre la confianza y la veracidad de la imagen testimonio. Las alteraciones, modificaciones y recreaciones sintéticas conviven permanentemente en el ecosistema actual de distribución instantánea, obligando al espectador a decodificar la obra ya no como un documento fiel de lo acontecido, sino como un vínculo expresivo y conceptual puro de la población global.
-                        </p>
-                    </div>
-                    <div class="col-lg-5 text-center">
-                        <div class="img-frame rounded bg-dark border-0" style="border: 1px solid rgba(0, 242, 254, 0.2) !important;">
-                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600" alt="Inteligencia Artificial Visual" class="img-fluid rounded mb-2" style="filter: hue-rotate(45deg);">
-                            <span class="text-muted small d-block pt-1" style="color: #00f2fe !important;">Composición sintética generativa y redes neuronales visuales.</span>
+                <div class="carousel-item">
+                  <div
+                    class="carousel-item-bg"
+                    style="
+                      background-image: url(&quot;https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&quot;);
+                    "
+                  >
+                    <div class="carousel-caption-custom text-start">
+                      <span
+                        class="badge bg-primary mb-2 px-3 py-1 text-uppercase rounded-pill"
+                        style="
+                          font-size: 0.7rem;
+                          letter-spacing: 1px;
+                          background-color: #071120 !important;
+                        "
+                        >Género Activo</span
+                      >
+                      <h4 class="fw-bold text-white mb-2">
+                        Fotografía Publicitaria
+                      </h4>
+                      <div class="row g-3">
+                        <div class="col-md-7">
+                          <p
+                            class="text-light opacity-90 mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Similar a la foto artística, se logra en ambientes
+                            controlados, reuniendo factores psicológicos de los
+                            elementos dentro del cuadro estructurado.
+                          </p>
                         </div>
+                        <div
+                          class="col-md-5 border-start border-secondary ps-md-4"
+                        >
+                          <h6
+                            class="fw-bold text-primary mb-1"
+                            style="
+                              font-size: 0.8rem;
+                              letter-spacing: 0.5px;
+                              text-transform: uppercase;
+                              color: #00f2fe !important;
+                            "
+                          >
+                            Efecto Emocional
+                          </h6>
+                          <p
+                            class="text-white fw-semibold mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Apelar no tanto a las emociones abiertas, sino
+                            directamente a inducir impulsos específicos en el
+                            consumidor.
+                          </p>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
 
-                <div class="py-4 reveal">
-                    <h3 class="accent-vivid-gold mb-3 text-center text-lg-start">Taxonomía Narrativa: Aplicación y Géneros de la Fotografía</h3>
-                    <p class="text-light opacity-80 mb-4 text-center text-lg-start">
-                        Para comprender cómo opera el peso emocional en las diferentes vertientes visuales provistas por la investigación del equipo, desliza a través de los siguientes campos funcionales:
+                <div class="carousel-item">
+                  <div
+                    class="carousel-item-bg"
+                    style="
+                      background-image: url(&quot;https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&quot;);
+                    "
+                  >
+                    <div class="carousel-caption-custom text-start">
+                      <span
+                        class="badge bg-warning text-dark mb-2 px-3 py-1 text-uppercase rounded-pill"
+                        style="
+                          font-size: 0.7rem;
+                          letter-spacing: 1px;
+                          background-color: #f1c40f !important;
+                        "
+                        >Género Activo</span
+                      >
+                      <h4 class="fw-bold text-white mb-2">
+                        Fotografía en Videojuegos
+                      </h4>
+                      <div class="row g-3">
+                        <div class="col-md-7">
+                          <p
+                            class="text-light opacity-90 mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Valiéndose totalmente de la tecnología para su
+                            creación, permite emular entornos interactivos
+                            libres modelados en coordenadas digitales de
+                            cómputo.
+                          </p>
+                        </div>
+                        <div
+                          class="col-md-5 border-start border-secondary ps-md-4"
+                        >
+                          <h6
+                            class="fw-bold text-warning mb-1"
+                            style="
+                              font-size: 0.8rem;
+                              letter-spacing: 0.5px;
+                              text-transform: uppercase;
+                              color: #f1c40f !important;
+                            "
+                          >
+                            Efecto Emocional
+                          </h6>
+                          <p
+                            class="text-white fw-semibold mb-0"
+                            style="font-size: 0.95rem"
+                          >
+                            Generación de sentimientos controlados de estrés y
+                            tensión (survival horror) o experiencias puramente
+                            lúdicas y divertidas.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#carouselTaxonomia"
+                data-bs-slide="prev"
+                style="width: 5%"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                  style="
+                    filter: brightness(10);
+                    shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                  "
+                ></span>
+                <span class="visually-hidden">Anterior</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#carouselTaxonomia"
+                data-bs-slide="next"
+                style="width: 5%"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                  style="
+                    filter: brightness(10);
+                    shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+                  "
+                ></span>
+                <span class="visually-hidden">Siguiente</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="row g-4 align-items-center py-5 reveal">
+            <div class="col-md-7">
+              <h3 class="accent-vivid-gold">
+                El Instrumento Técnico: Planos y Ángulos
+              </h3>
+              <p class="text-light opacity-80">
+                Dentro de la composición técnica del continente visual, los
+                planos de corte y los angles de cámara no son elecciones
+                meramente ornamentales; constituyen los verdaderos instrumentos
+                semiológicos de los que dispone el fotógrafo para inducir
+                reacciones específicas o evocar emociones profundas en el
+                observador, tal como se aprecia en el uso dramático de la
+                angulación en el lenguaje cinematográfico de directores como
+                Stanley Kubrick (Ej: Full Metal Jacket, 1987).
+              </p>
+            </div>
+            <div class="col-md-5 text-center">
+              <div class="img-frame rounded bg-dark border-0">
+                <img
+                  src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=400"
+                  alt="Ángulos Cinematográficos"
+                  class="img-fluid rounded"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="py-5 reveal">
+            <h3 class="accent-vivid-gold text-center mb-2">
+              Continente Dinámico: Ensayo y Narrativa Multimedia
+            </h3>
+            <p
+              class="text-light opacity-80 text-center mx-auto mb-4"
+              style="max-width: 700px"
+            >
+              Atendiendo a las directrices de la actividad, se habilita este
+              espacio optimizado para incrustar el contenido audiovisual o
+              interactivo desarrollado por el equipo que sirve como medio de
+              divulgación de la información:
+            </p>
+
+            <div class="row justify-content-center">
+              <div class="col-lg-9">
+                <div
+                  class="video-container-placeholder d-flex flex-column justify-content-center align-items-center text-center p-4 shadow"
+                >
+                  <div class="text-center p-3">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="50"
+                      height="50"
+                      fill="#f1c40f"
+                      class="bi bi-play-circle mb-3"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+                      />
+                      <path
+                        d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"
+                      />
+                    </svg>
+                    <h4 class="text-white fw-bold mb-2">
+                      [ZONA DE INTEGRACIÓN MULTIMEDIA OBLIGATORIA]
+                    </h4>
+                    <p
+                      class="small text-light opacity-50 mb-3 mx-auto"
+                      style="max-width: 500px"
+                    >
+                      Reemplace este bloque de puntos discontinuos pegando el
+                      código <code>&lt;iframe&gt;</code> de su video explicativo
+                      de la actividad (Mínimo de 2 minutos de duración
+                      requerido).
                     </p>
-                    
-                    <div id="carouselTaxonomia" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="6000">
-                        
-                        <div class="carousel-indicators mb-n2">
-                            <button type="button" data-bs-target="#carouselTaxonomia" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1" style="width: 30px; height: 3px; background-color: #f1c40f; border: none;"></button>
-                            <button type="button" data-bs-target="#carouselTaxonomia" data-bs-slide-to="1" aria-label="Slide 2" style="width: 30px; height: 3px; background-color: #f1c40f; border: none;"></button>
-                            <button type="button" data-bs-target="#carouselTaxonomia" data-bs-slide-to="2" aria-label="Slide 3" style="width: 30px; height: 3px; background-color: #f1c40f; border: none;"></button>
-                            <button type="button" data-bs-target="#carouselTaxonomia" data-bs-slide-to="3" aria-label="Slide 4" style="width: 30px; height: 3px; background-color: #f1c40f; border: none;"></button>
-                        </div>
-
-                        <div class="carousel-inner shadow-lg rounded-4 overflow-hidden">
-                            
-                            <div class="carousel-item active">
-                                <div class="carousel-item-bg" style="background-image: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000');">
-                                    <div class="carousel-caption-custom text-start">
-                                        <span class="badge bg-danger mb-2 px-3 py-1 text-uppercase rounded-pill" style="font-size: 0.7rem; letter-spacing: 1px;">Género Activo</span>
-                                        <h4 class="fw-bold text-white mb-2">Fotografía Periodística</h4>
-                                        <div class="row g-3">
-                                            <div class="col-md-7">
-                                                <p class="text-light opacity-90 mb-0" style="font-size: 0.95rem;">Las imágenes se capturan de manera oportuna y absolutamente fortuita, recayendo el peso emocional en las circunstancias y la composición de cada cuadro.</p>
-                                            </div>
-                                            <div class="col-md-5 border-start border-secondary ps-md-4">
-                                                <h6 class="fw-bold text-danger mb-1" style="font-size: 0.8rem; letter-spacing: 0.5px; text-transform: uppercase;">Efecto Emocional</h6>
-                                                <p class="text-white fw-semibold mb-0" style="font-size: 0.95rem;">Impacto crudo que puede rayar en los límites de la sensibilidad moral del espectador (Ej: Obra de Kevin Carter en 1993).</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item">
-                                <div class="carousel-item-bg" style="background-image: url('https://images.unsplash.com/photo-1459908676235-d5f02a50184b?q=80&w=1000');">
-                                    <div class="carousel-caption-custom text-start">
-                                        <span class="badge bg-secondary mb-2 px-3 py-1 text-uppercase rounded-pill" style="font-size: 0.7rem; letter-spacing: 1px; background-color: #8c6239 !important;">Género Activo</span>
-                                        <h4 class="fw-bold text-white mb-2">Fotografía Artística</h4>
-                                        <div class="row g-3">
-                                            <div class="col-md-7">
-                                                <p class="text-light opacity-90 mb-0" style="font-size: 0.95rem;">Las composiciones se logran mediante una escenografía, temáticas y técnicas creativas en ambientes controlados que, en conjunto con la edición digital, permiten una gran gama de resultados.</p>
-                                            </div>
-                                            <div class="col-md-5 border-start border-secondary ps-md-4">
-                                                <h6 class="fw-bold text-muted mb-1" style="font-size: 0.8rem; letter-spacing: 0.5px; text-transform: uppercase; color: #f1c40f !important;">Efecto Emocional</h6>
-                                                <p class="text-white fw-semibold mb-0" style="font-size: 0.95rem;">Evocación de una vasta gama de estados reflexivos, estéticos, profundos y composiciones con cánones libres.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item">
-                                <div class="carousel-item-bg" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000');">
-                                    <div class="carousel-caption-custom text-start">
-                                        <span class="badge bg-primary mb-2 px-3 py-1 text-uppercase rounded-pill" style="font-size: 0.7rem; letter-spacing: 1px; background-color: #071120 !important;">Género Activo</span>
-                                        <h4 class="fw-bold text-white mb-2">Fotografía Publicitaria</h4>
-                                        <div class="row g-3">
-                                            <div class="col-md-7">
-                                                <p class="text-light opacity-90 mb-0" style="font-size: 0.95rem;">Similar a la foto artística, se logra en ambientes controlados, reuniendo factores psicológicos de los elementos dentro del cuadro estructurado.</p>
-                                            </div>
-                                            <div class="col-md-5 border-start border-secondary ps-md-4">
-                                                <h6 class="fw-bold text-primary mb-1" style="font-size: 0.8rem; letter-spacing: 0.5px; text-transform: uppercase; color: #00f2fe !important;">Efecto Emocional</h6>
-                                                <p class="text-white fw-semibold mb-0" style="font-size: 0.95rem;">Apelar no tanto a las emociones abiertas, sino directamente a inducir impulsos específicos en el consumidor.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="carousel-item">
-                                <div class="carousel-item-bg" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000');">
-                                    <div class="carousel-caption-custom text-start">
-                                        <span class="badge bg-warning text-dark mb-2 px-3 py-1 text-uppercase rounded-pill" style="font-size: 0.7rem; letter-spacing: 1px; background-color: #f1c40f !important;">Género Activo</span>
-                                        <h4 class="fw-bold text-white mb-2">Fotografía en Videojuegos</h4>
-                                        <div class="row g-3">
-                                            <div class="col-md-7">
-                                                <p class="text-light opacity-90 mb-0" style="font-size: 0.95rem;">Valiéndose totalmente de la tecnología para su creación, permite emular entornos interactivos libres modelados en coordenadas digitales de cómputo.</p>
-                                            </div>
-                                            <div class="col-md-5 border-start border-secondary ps-md-4">
-                                                <h6 class="fw-bold text-warning mb-1" style="font-size: 0.8rem; letter-spacing: 0.5px; text-transform: uppercase; color: #f1c40f !important;">Efecto Emocional</h6>
-                                                <p class="text-white fw-semibold mb-0" style="font-size: 0.95rem;">Generación de sentimientos controlados de estrés y tensión (survival horror) o experiencias puramente lúdicas y divertidas.</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselTaxonomia" data-bs-slide="prev" style="width: 5%;">
-                            <span class="carousel-control-prev-icon" aria-hidden="true" style="filter: brightness(10); shadow: 0 2px 4px rgba(0,0,0,0.5);"></span>
-                            <span class="visually-hidden">Anterior</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselTaxonomia" data-bs-slide="next" style="width: 5%;">
-                            <span class="carousel-control-next-icon" aria-hidden="true" style="filter: brightness(10); shadow: 0 2px 4px rgba(0,0,0,0.5);"></span>
-                            <span class="visually-hidden">Siguiente</span>
-                        </button>
-                    </div>
+                    <code
+                      class="d-block p-2 bg-dark rounded text-gold small"
+                      style="color: #f1c40f"
+                      >&lt;iframe width="100%" height="450"
+                      src="URL_DE_SU_VIDEO_AQUÍ" frameborder="0"
+                      allowfullscreen&gt;&lt;/iframe&gt;</code
+                    >
+                  </div>
                 </div>
-
-                <div class="row g-4 align-items-center py-5 reveal">
-                    <div class="col-md-7">
-                        <h3 class="accent-vivid-gold">El Instrumento Técnico: Planos y Ángulos</h3>
-                        <p class="text-light opacity-80">
-                            Dentro de la composición técnica del continente visual, los planos de corte y los angles de cámara no son elecciones meramente ornamentales; constituyen los verdaderos instrumentos semiológicos de los que dispone el fotógrafo para inducir reacciones específicas o evocar emociones profundas en el observador, tal como se aprecia en el uso dramático de la angulación en el lenguaje cinematográfico de directores como Stanley Kubrick (Ej: Full Metal Jacket, 1987).
-                        </p>
-                    </div>
-                    <div class="col-md-5 text-center">
-                        <div class="img-frame rounded bg-dark border-0">
-                            <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?q=80&w=400" alt="Ángulos Cinematográficos" class="img-fluid rounded">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="py-5 reveal">
-                    <h3 class="accent-vivid-gold text-center mb-2">Continente Dinámico: Ensayo y Narrativa Multimedia</h3>
-                    <p class="text-light opacity-80 text-center mx-auto mb-4" style="max-width: 700px;">
-                        Atendiendo a las directrices de la actividad, se habilita este espacio optimizado para incrustar el contenido audiovisual o interactivo desarrollado por el equipo que sirve como medio de divulgación de la información:
-                    </p>
-
-                    <div class="row justify-content-center">
-                        <div class="col-lg-9">
-                            <div class="video-container-placeholder d-flex flex-column justify-content-center align-items-center text-center p-4 shadow">
-                                <div class="text-center p-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#f1c40f" class="bi bi-play-circle mb-3" viewBox="0 0 16 16">
-                                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                                        <path d="M6.271 5.055a.5.5 0 0 1 .52.038l3.5 2.5a.5.5 0 0 1 0 .814l-3.5 2.5A.5.5 0 0 1 6 10.5v-5a.5.5 0 0 1 .271-.445z"/>
-                                    </svg>
-                                    <h4 class="text-white fw-bold mb-2">[ZONA DE INTEGRACIÓN MULTIMEDIA OBLIGATORIA]</h4>
-                                    <p class="small text-light opacity-50 mb-3 mx-auto" style="max-width: 500px;">
-                                        Reemplace este bloque de puntos discontinuos pegando el código <code>&lt;iframe&gt;</code> de su video explicativo de la actividad (Mínimo de 2 minutos de duración requerido).
-                                    </p>
-                                    <code class="d-block p-2 bg-dark rounded text-gold small" style="color: #f1c40f;">&lt;iframe width="100%" height="450" src="URL_DE_SU_VIDEO_AQUÍ" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;</code>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        <section class="py-5" style="background-color: rgba(6, 15, 28, 0.96); border-top: 1px solid rgba(255,255,255,0.05);">
-            <div class="container px-4 text-center reveal">
-                <div class="row justify-content-center">
-                    <div class="col-md-9 text-white">
-                        <h2 class="accent-vivid-gold fw-bold mb-3">Conclusión: La Veracidad frente a la Alteración Constante</h2>
-                        <p class="text-light opacity-75 text-justify">
-                            Siempre se está dando a conocer fotografías en todo el planeta que documentan inundaciones globales, el calentamiento climático, viajes a la luna o el descubrimiento de algún nuevo sitio histórico. Debido a ello, la fotografía alcanza un alto valor de confianza depositado en su supuesta veracidad testimonial frente a la población; sin embargo, las alteraciones y manipulaciones técnicas han convivido con ella en todas sus etapas evolutivas. En última instancia, la fotografía trasciende el mero registro técnico: actúa como un poderoso e indispensable vínculo expresivo de la sociedad global.
-                        </p>
-                    </div>
-                </div>
+      <section
+        class="py-5"
+        style="
+          background-color: rgba(6, 15, 28, 0.96);
+          border-top: 1px solid rgba(255, 255, 255, 0.05);
+        "
+      >
+        <div class="container px-4 text-center reveal">
+          <div class="row justify-content-center">
+            <div class="col-md-9 text-white">
+              <h2 class="accent-vivid-gold fw-bold mb-3">
+                Conclusión: La Veracidad frente a la Alteración Constante
+              </h2>
+              <p class="text-light opacity-75 text-justify">
+                Siempre se está dando a conocer fotografías en todo el planeta
+                que documentan inundaciones globales, el calentamiento
+                climático, viajes a la luna o el descubrimiento de algún nuevo
+                sitio histórico. Debido a ello, la fotografía alcanza un alto
+                valor de confianza depositado en su supuesta veracidad
+                testimonial frente a la población; sin embargo, las alteraciones
+                y manipulaciones técnicas han convivido con ella en todas sus
+                etapas evolutivas. En última instancia, la fotografía trasciende
+                el mero registro técnico: actúa como un poderoso e indispensable
+                vínculo expresivo de la sociedad global.
+              </p>
             </div>
-        </section>
-
+          </div>
+        </div>
+      </section>
     </main>
 
-    <footer style="background-color: #030810; color: #7f8c8d; padding: 40px 20px; font-size: 0.85em; border-top: 1px solid rgba(255,255,255,0.02);">
-        <div class="container px-4">
-            <div class="row align-items-center g-3 text-center text-md-start">
-                <div class="col-md-5">
-                    <p class="mb-1 text-secondary fw-bold">&copy; 2026 — Asignatura: Narrativa Multimedia y Continente Digital.</p>
-                    <p class="mb-0 text-muted small">Diseño unificado bajo los estrictos criterios de la rúbrica de evaluación de la actividad grupal.</p>
-                </div>
-                <div class="col-md-7 text-md-end">
-                    <div class="d-flex flex-wrap justify-content-center justify-content-md-end gap-2">
-                        <span class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill">Luis Fernando Corzo Fonseca</span>
-                        <span class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill">Grecia Sofia Garcia Rojas</span>
-                        <span class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill">Verónica Andrea Oporta Dumas</span>
-                        <span class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill">Ángel Gustavo Rovira Morelos</span>
-                        <span class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill">Adolfo Jose Urbina Sánchez</span>
-                    </div>
-                </div>
+    <footer
+      style="
+        background-color: #030810;
+        color: #7f8c8d;
+        padding: 40px 20px;
+        font-size: 0.85em;
+        border-top: 1px solid rgba(255, 255, 255, 0.02);
+      "
+    >
+      <div class="container px-4">
+        <div class="row align-items-center g-3 text-center text-md-start">
+          <div class="col-md-5">
+            <p class="mb-1 text-secondary fw-bold">
+              &copy; 2026 — Asignatura: Narrativa Multimedia y Continente
+              Digital.
+            </p>
+            <p class="mb-0 text-muted small">
+              Diseño unificado bajo los estrictos criterios de la rúbrica de
+              evaluación de la actividad grupal.
+            </p>
+          </div>
+          <div class="col-md-7 text-md-end">
+            <div
+              class="d-flex flex-wrap justify-content-center justify-content-md-end gap-2"
+            >
+              <span
+                class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill"
+                >Luis Fernando Corzo Fonseca</span
+              >
+              <span
+                class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill"
+                >Grecia Sofia Garcia Rojas</span
+              >
+              <span
+                class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill"
+                >Verónica Andrea Oporta Dumas</span
+              >
+              <span
+                class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill"
+                >Ángel Gustavo Rovira Morelos</span
+              >
+              <span
+                class="badge bg-dark text-light border border-secondary py-2 px-3 rounded-pill"
+                >Adolfo Jose Urbina Sánchez</span
+              >
             </div>
+          </div>
         </div>
+      </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var reveals = document.querySelectorAll(".reveal");
-            
-            var checkReveal = new IntersectionObserver(function(entries, observer) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("active");
-                    }
-                });
-            }, {
-                threshold: 0.05, 
-                rootMargin: "0px 0px -30px 0px"
-            });
+      document.addEventListener("DOMContentLoaded", function () {
+        var reveals = document.querySelectorAll(".reveal");
 
-            reveals.forEach(function(el) {
-                checkReveal.observe(el);
+        var checkReveal = new IntersectionObserver(
+          function (entries, observer) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+              }
             });
+          },
+          {
+            threshold: 0.05,
+            rootMargin: "0px 0px -30px 0px",
+          },
+        );
+
+        reveals.forEach(function (el) {
+          checkReveal.observe(el);
         });
+      });
     </script>
-</body>
+  </body>
 </html>
